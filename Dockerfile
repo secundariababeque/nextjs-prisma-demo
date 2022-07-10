@@ -69,13 +69,5 @@ USER nextjs
 
 EXPOSE 3000
 
-# Run migrations
-RUN npx prisma migrate deploy
 
-# Generate prisma client 
-RUN npx prisma generate
-
-# start app
-CMD ["npm", "start"]
-
-CMD ["./entrypoint.sh" ]
+CMD ["/bin/sh", "entrypoint.sh"]
