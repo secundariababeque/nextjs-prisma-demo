@@ -69,5 +69,6 @@ USER nextjs
 
 EXPOSE 3000
 
+RUN ["chmod", "+x", "./entrypoint.sh" ]
 
-CMD ["chmod", "+x", "./entrypoint.sh" ]
+CMD ["./entrypoint.sh" ]
