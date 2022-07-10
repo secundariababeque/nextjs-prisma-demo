@@ -9,10 +9,11 @@ services:
       dockerfile: Dockerfile
     # image: 
     volumes:
-      - ./:/app
+      - .:/app
       - /app/node_modules
       - /app/.next
       - /app/public
       - /app/prisma
+      - /entrypoint.sh
     # environment:
     #   DATABASE_URL: 
