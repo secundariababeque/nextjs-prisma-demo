@@ -4,14 +4,14 @@ services:
   nextjs:
     ports:
       - 3000:3000
-    build:
-      context: .
-      dockerfile: Dockerfile
-    # image: nextjs-exapmple
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: nextjs-prisma-docker_nextjs:latest
     volumes:
       - ./:/app
       - /app/node_modules
       - /app/.next
-    entrypoint: ./entrypoint.sh
+      - /app/entrypoint.sh
     # environment:
     #   DATABASE_URL:
