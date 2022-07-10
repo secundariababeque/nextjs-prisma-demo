@@ -4,14 +4,14 @@ services:
   nextjs:
     ports:
       - 3000:3000
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    image: nextjs-exapmple
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # image: nextjs-exapmple
     volumes:
       - ./:/app
       - /app/node_modules
       - /app/.next
-    entrypoint:  ./entrypoint.sh
-    environment:
-      DATABASE_URL: postgresql://testpg:testpg@132.145.183.252:49169/testpg
+    entrypoint:  - /app/entrypoint.sh
+    # environment:
+    #   DATABASE_URL:
