@@ -70,4 +70,4 @@ USER nextjs
 EXPOSE 3000
 
 
-CMD [ "" ]
+CMD ["chmod", "+x", "./entrypoint.sh" ]
