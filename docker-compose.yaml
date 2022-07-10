@@ -7,13 +7,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    # image: 
+    # image: nextjs-exapmple
     volumes:
-      - .:/app
+      - ./:/app
       - /app/node_modules
       - /app/.next
-      - /app/public
-      - /app/prisma
-      - /entrypoint.sh
     # environment:
-    #   DATABASE_URL: 
+    #   DATABASE_URL:
