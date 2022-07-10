@@ -69,5 +69,6 @@ USER nextjs
 
 EXPOSE 3000
 
+RUN chmod -R 755 /app/entrypoint.sh
 
-CMD ["/bin/sh", "entrypoint.sh"]
+CMD ["/bin/sh", "/app/entrypoint.sh"]
