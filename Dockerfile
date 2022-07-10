@@ -4,7 +4,7 @@
 # We're starting with the same base image, but we're declaring
 # that this block outputs an image called DEPS that we
 # won't be deploying - it just installs our Yarn deps
-FROM node:14-alpine AS deps
+FROM arm64v8/node:14.5.0-alpine AS deps
 
 # If you need libc for any of your deps, uncomment this line:
 # RUN apk add --no-cache libc6-compat
@@ -20,7 +20,7 @@ RUN npm install --frozen-lockfile
 # END DEPS IMAGE
 
 # Now we make a container to handle our Build
-FROM node:14-alpine AS BUILD_IMAGE
+FROM arm64v8/node:14.5.0-alpine AS BUILD_IMAGE
 
 # Set up our work directory again
 WORKDIR /app
@@ -42,7 +42,7 @@ RUN npm install --production --frozen-lockfile --ignore-scripts --prefer-offline
 # END OF BUILD_IMAGE
 
 # This starts our application's run image - the final output of build.
-FROM node:14-alpine
+FROM arm64v8/node:14.5.0-alpine
 
 ENV NODE_ENV production
 
@@ -69,4 +69,5 @@ USER nextjs
 
 EXPOSE 3000
 
-CMD [ "./entrypoint.sh" ]
+
+CMD [ "" ]

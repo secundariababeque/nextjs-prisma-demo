@@ -12,6 +12,6 @@ services:
       - ./:/app
       - /app/node_modules
       - /app/.next
-      - /app/entrypoint.sh
+      - /entrypoint.sh
     # environment:
     #   DATABASE_URL:
