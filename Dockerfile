@@ -72,3 +72,5 @@ EXPOSE 3000
 RUN chmod +x ./entrypoint.sh && ls
 
 RUN ./entrypoint.sh
+
+CMD [""]
