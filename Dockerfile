@@ -71,4 +71,4 @@ EXPOSE 3000
 
 RUN chmod +x entrypoint.sh
 
-CMD ["/bin/sh","/entrypoint.sh" ]
+CMD ["/bin/sh","entrypoint.sh" ]
