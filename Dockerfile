@@ -31,7 +31,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
-RUN  npm run vercel-build
+RUN  npx prisma generate
+RUN  npm run build
 
 # Remove all the development dependencies since we don't
 # need them to run the actual server.
