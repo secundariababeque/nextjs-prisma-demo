@@ -69,6 +69,6 @@ USER nextjs
 
 EXPOSE 3000
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x ./entrypoint.sh && ls
 
-CMD ["/bin/sh","./entrypoint.sh" ]
+RUN ./entrypoint.sh
