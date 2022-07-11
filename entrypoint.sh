@@ -1,8 +1,5 @@
 #!/bin/sh
 
-#show dir
-ls
-
 # Run migrations
 npx prisma migrate deploy
 

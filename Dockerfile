@@ -31,13 +31,13 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
+COPY ./entrypoint.sh ./entrypoint.sh
 RUN  npm run build
 
 # Remove all the development dependencies since we don't
 # need them to run the actual server.
 RUN rm -rf node_modules
 RUN npm install --production --frozen-lockfile --ignore-scripts --prefer-offline
-RUN npx prisma generate
 
 # END OF BUILD_IMAGE
 
@@ -59,6 +59,7 @@ COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/public ./public
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/entrypoint.sh ./entrypoint.sh
 
 
 # 4. OPTIONALLY the next.config.js, if your app has one
@@ -68,4 +69,7 @@ USER nextjs
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+RUN chmod +x /entrypoint.sh
+
+
+CMD ["/bin/sh", "/entrypoint.sh"]
