@@ -31,8 +31,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
-COPY ./entrypoint.sh ./entrypoint.sh
-RUN  npm run build
+RUN  npm run vercel-build
 
 # Remove all the development dependencies since we don't
 # need them to run the actual server.
@@ -59,7 +58,6 @@ COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/public ./public
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/entrypoint.sh ./entrypoint.sh
 
 
 # 4. OPTIONALLY the next.config.js, if your app has one
@@ -69,6 +67,4 @@ USER nextjs
 
 EXPOSE 3000
 
-RUN chmod -R 755 /app/entrypoint.sh
-
-CMD ["/bin/sh", "/app/entrypoint.sh"]
+CMD ["npm", "start"]
