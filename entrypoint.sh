@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Run migrations
-npx prisma migrate deploy
+# npx prisma migrate deploy
 
 # Generate prisma client 
 npx prisma generate
