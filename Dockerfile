@@ -69,8 +69,8 @@ USER nextjs
 
 EXPOSE 3000
 
-RUN chmod +x ./entrypoint.sh && ls
+# RUN chmod +x ./entrypoint.sh && ls
 
-RUN ./entrypoint.sh
+RUN echo $(ls -1 /tmp/dir)
 
-CMD [""]
+CMD ["npm", "vercel-build"]
