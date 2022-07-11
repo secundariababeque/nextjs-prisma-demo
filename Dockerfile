@@ -31,7 +31,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
-RUN  npx prisma generate
 RUN  npm run build
 
 # Remove all the development dependencies since we don't
@@ -67,5 +66,7 @@ COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/prisma ./prisma
 USER nextjs
 
 EXPOSE 3000
+
+RUN  npx prisma generate
 
 CMD ["npm", "start"]
