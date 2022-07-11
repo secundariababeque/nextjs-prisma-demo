@@ -37,6 +37,7 @@ RUN  npm run build
 # need them to run the actual server.
 RUN rm -rf node_modules
 RUN npm install --production --frozen-lockfile --ignore-scripts --prefer-offline
+RUN npx prisma generate
 
 # END OF BUILD_IMAGE
 
@@ -66,7 +67,5 @@ COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/prisma ./prisma
 USER nextjs
 
 EXPOSE 3000
-
-RUN  npx prisma generate
 
 CMD ["npm", "start"]
