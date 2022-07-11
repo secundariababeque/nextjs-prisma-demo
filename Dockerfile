@@ -32,7 +32,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
 COPY ./entrypoint.sh ./entrypoint.sh
-RUN  npm run vercel-build
+RUN  npm run build
 
 # Remove all the development dependencies since we don't
 # need them to run the actual server.
