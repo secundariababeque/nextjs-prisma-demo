@@ -14,7 +14,7 @@ FROM arm64v8/node:14.5.0-alpine AS deps
 # if these dependency files change. Nice speed hack!
 WORKDIR /app
 COPY package*.json ./
-COPY ./prisma prisma
+COPY prisma ./prisma
 RUN npm install --frozen-lockfile
 
 # END DEPS IMAGE
@@ -31,7 +31,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 COPY ./prisma ./prisma
-COPY ./entrypoint.sh ./entrypoint.sh
+# COPY ./entrypoint.sh ./entrypoint.sh
 RUN  npm run build
 
 # Remove all the development dependencies since we don't
@@ -59,7 +59,7 @@ COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/node_modules ./node_modules
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/public ./public
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/entrypoint.sh ./entrypoint.sh
+# COPY --from=BUILD_IMAGE --chown=nextjs:nodejs /app/entrypoint.sh ./entrypoint.sh
 
 
 # 4. OPTIONALLY the next.config.js, if your app has one
