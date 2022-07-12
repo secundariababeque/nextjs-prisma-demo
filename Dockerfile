@@ -20,7 +20,7 @@ RUN npm install --frozen-lockfile
 # END DEPS IMAGE
 
 # Now we make a container to handle our Build
-FROM arm64v8/node:16.16.0-alpine AS BUILD_IMAGEs
+FROM arm64v8/node:16.16.0-alpine AS BUILD_IMAGE
 
 # Set up our work directory again
 WORKDIR /app
